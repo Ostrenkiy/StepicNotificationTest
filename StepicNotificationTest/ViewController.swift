@@ -61,7 +61,7 @@ class ViewController: NSViewController {
     }
     
     func getMessage(to: String) -> NSDictionary {
-        return ["to": to, "notification": ["body": "Stepic test learn notification", "sound" : "default", "badge" : "0"], "data" : ["object" : NotificationObjects.learn], "priority":"high"]
+        return ["to": to, "notification": ["title": "test", "body": "Stepic test learn notification", "sound" : "default", "badge" : "0"], "data" : ["object" : "\(NotificationObjects.learn)"], "priority":"high"]
     }
     
     func getApiKey() -> String {

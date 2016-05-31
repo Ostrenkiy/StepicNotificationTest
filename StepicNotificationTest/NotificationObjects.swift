@@ -11,9 +11,14 @@ import Foundation
 struct NotificationObjects {
     
     private static func loadObjectWithKey(key: String) -> String {
-        let path = NSBundle.mainBundle().bundlePath
-        let scriptsPlistPath = "\(path)/NotificationText.plist"
-        let plistData = NSDictionary(contentsOfFile: scriptsPlistPath)!
+//        let path = NSBundle.mainBundle().bundlePath
+//        print(path)
+//        let notificationsPlistPath = "\(path)/Contents/NotificationText.plist"
+//        
+//        
+        let notificationsPlistPath = NSBundle.mainBundle().pathForResource("NotificationText", ofType: "plist")
+        print(notificationsPlistPath)
+        let plistData = NSDictionary(contentsOfFile: notificationsPlistPath!)!
         return plistData[key] as! String
     }
     
