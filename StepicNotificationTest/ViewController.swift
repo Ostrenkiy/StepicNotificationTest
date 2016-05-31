@@ -28,6 +28,7 @@ class ViewController: NSViewController {
     }
 
     @IBAction func sendButtonPressed(sender: NSButton) {
+        sendMessage(getRegToken())
     }
     
     func sendMessage(to: String) {
@@ -60,7 +61,7 @@ class ViewController: NSViewController {
     }
     
     func getMessage(to: String) -> NSDictionary {
-        return ["to": to, "notification": ["body": "Hello from GCM", "sound" : "default", "badge" : "0"], "data" : ["object" : NotificationObjects.learn], "priority":"high"]
+        return ["to": to, "notification": ["body": "Stepic test learn notification", "sound" : "default", "badge" : "0"], "data" : ["object" : NotificationObjects.learn], "priority":"high"]
     }
     
     func getApiKey() -> String {
