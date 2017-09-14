@@ -21,55 +21,66 @@ class ViewController: NSViewController {
         // Do any additional setup after loading the view.
     }
 
-    override var representedObject: AnyObject? {
+    override var representedObject: Any? {
         didSet {
         // Update the view, if already loaded.
         }
     }
 
-    @IBAction func sendButtonPressed(sender: NSButton) {
+    @IBAction func sendButtonPressed(_ sender: NSButton) {
         sendMessage(getRegToken())
     }
     
-    func sendMessage(to: String) {
+    func sendMessage(_ to: String) {
         // Create the request.
-        let request = NSMutableURLRequest(URL: NSURL(string: sendUrl)!)
-        request.HTTPMethod = "POST"
+        let request = NSMutableURLRequest(url: URL(string: sendUrl)!)
+        request.httpMethod = "POST"
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         request.setValue("key=\(getApiKey())", forHTTPHeaderField: "Authorization")
         request.timeoutInterval = 60
         
         // prepare the payload
         let message = getMessage(to)
-        let jsonBody: NSData?
+        let jsonBody: Data?
         do {
-            jsonBody = try NSJSONSerialization.dataWithJSONObject(message, options: [])
-            request.HTTPBody = jsonBody!
-            NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue(),
-                                                    completionHandler: { (response: NSURLResponse?, data: NSData?, error: NSError?) -> Void in
-                                                        if error != nil {
-                                                            NSAlert(error: error!).runModal()
-                                                        } else {
-                                                            print("Success! Response from the GCM server:")
-                                                            print(response)
-                                                        }
-            })
+            jsonBody = try JSONSerialization.data(withJSONObject: message, options: [])
+            request.httpBody = jsonBody!
+            NSURLConnection.sendAsynchronousRequest(
+                request as URLRequest,
+                queue: OperationQueue.main,
+                completionHandler: {
+                    (response: URLResponse?, data: Data?, error: Error?) -> Void in
+                    if error != nil {
+                        NSAlert(error: error!).runModal()
+                    } else {
+                        print("Success! Response from the GCM server:")
+                        print(response)
+                    }
+                }
+            )
         } catch let error as NSError {
             NSAlert(error: error).runModal()
         }
         
     }
     
-    func getMessage(to: String) -> NSDictionary {
-        return ["to": to, "notification": ["title": "test", "body": "Stepic test learn notification", "sound" : "default", "badge" : "0"], "data" : ["object" : "\(NotificationObjects.learn)"], "priority":"high"]
+    func getMessage(_ to: String) -> NSDictionary {
+        return ["to": to,
+                "notification" : [
+                    "sound" : "",
+                    "badge" : "0",
+                    "content_available" : true],
+                "priority" : "high"]
     }
     
     func getApiKey() -> String {
-        return apiKeyTextField.stringValue.stringByReplacingOccurrencesOfString("\n", withString: "")
+        return "AIzaSyBUKsA9GLHhYQ31fu2OPKGOypwMR9SE-6U"
+        return apiKeyTextField.stringValue.replacingOccurrences(of: "\n", with: "")
     }
     
     func getRegToken() -> String {
-        return registrationIdTextField.stringValue.stringByReplacingOccurrencesOfString("\n", withString: "")
+        return "cMi6Ja1glgc:APA91bEP4l4Wcak8rmiYHEa6P2Vqr4zVcpaWbYyALunmISglHRgls8ZbJCwugUFo6rv1QVvnlbaIeQ5VvdqqEi4KHXfEhKcHcVOlRaicZDsGHp8-8-YkQwAlmHSTgwnwO05CX8YDYaZq"
+        return registrationIdTextField.stringValue.replacingOccurrences(of: "\n", with: "")
     }
     
 }

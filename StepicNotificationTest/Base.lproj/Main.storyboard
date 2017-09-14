@@ -1,8 +1,9 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15F34" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="10116"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="13196"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--Application-->
@@ -656,6 +657,9 @@
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
                         <rect key="contentRect" x="196" y="240" width="480" height="270"/>
                         <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1027"/>
+                        <connections>
+                            <outlet property="delegate" destination="B8D-0N-5wS" id="1zG-p1-1Xq"/>
+                        </connections>
                     </window>
                     <connections>
                         <segue destination="XfG-lQ-9wD" kind="relationship" relationship="window.shadowedContentViewController" id="cq2-FE-JQM"/>
@@ -673,7 +677,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="480" height="195"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <textField verticalHuggingPriority="750" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gge-xm-CmH">
+                            <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="gge-xm-CmH">
                                 <rect key="frame" x="20" y="153" width="440" height="22"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" placeholderString="API Key" drawsBackground="YES" id="iTE-hc-V1M">
                                     <font key="font" metaFont="system"/>
@@ -681,7 +685,7 @@
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <textField verticalHuggingPriority="750" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9h8-zy-RaQ">
+                            <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="9h8-zy-RaQ">
                                 <rect key="frame" x="20" y="121" width="440" height="22"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" placeholderString="Registration id" drawsBackground="YES" id="9R7-cO-BeS">
                                     <font key="font" metaFont="system"/>
@@ -705,7 +709,9 @@
                             <constraint firstItem="MYP-FN-QZ1" firstAttribute="centerX" secondItem="m2S-Jp-Qdl" secondAttribute="centerX" id="L2k-mj-ggq"/>
                             <constraint firstItem="9h8-zy-RaQ" firstAttribute="top" secondItem="gge-xm-CmH" secondAttribute="bottom" constant="10" symbolic="YES" id="P5I-Db-T3o"/>
                             <constraint firstItem="MYP-FN-QZ1" firstAttribute="top" secondItem="9h8-zy-RaQ" secondAttribute="bottom" constant="13" id="W7e-iW-O4W"/>
+                            <constraint firstAttribute="trailing" secondItem="gge-xm-CmH" secondAttribute="trailing" constant="20" id="XYy-eB-As1"/>
                             <constraint firstItem="gge-xm-CmH" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" constant="20" id="n52-Ym-TOY"/>
+                            <constraint firstItem="gge-xm-CmH" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="20" id="se7-ff-jXi"/>
                             <constraint firstItem="9h8-zy-RaQ" firstAttribute="leading" secondItem="gge-xm-CmH" secondAttribute="leading" id="wBY-7F-SZ6"/>
                         </constraints>
                     </view>
